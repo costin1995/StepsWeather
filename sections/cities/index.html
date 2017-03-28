@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="Cristi Corcoveanu">
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="theme-color" content="#EA2663">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="./static/styles.css" rel="stylesheet">
+	<link href="./static/weather-icons.css" rel="stylesheet">
+
+    <title>Weather app</title>
+</head>
+<body>
+    <div class="header">
+        <button class="js-menu-show header__menu-toggle material-icons">menu</button>
+    </div>
+
+    <steps-sidebar class="navbar">
+        <div class="navbar__container">
+            <header class="navbar__header">
+                <button class="js-menu-hide material-icons">close</button>
+                <div class="navbar__title">Sidebar</div>
+            </header>
+            <div class="navbar__content">
+                <ul>
+                <li><a href="/" js-route>Home</a></li>
+                    <li><a href="/about" js-route>About</a></li>
+                    <li> <a href="/Cluj-Napoca">Cluj</a></li>
+                    <li> <a href ="/Sibiu">Sibiu</a></li>
+                    <li>Becicherecu' Mic</li>
+                </ul>
+            </div>
+        </div>
+    </steps-sidebar>
+	
+	
+    <main>	
+		
+		<!--<steps-view class="visible" route="/cities">
+			<h1>Cluj</h1>
+		</steps-view> -->
+	
+    </main>
+
+<script src="//unpkg.com/axios/dist/axios.min.js"></script>
+<script defer src="./static/modules/sidebar.js" type="application/javascript"></script>
+<script defer src="./static/modules/steps-view.js" type="application/javascript"></script>
+<script defer src="./static/modules/steps-sidebar.js" type="application/javascript"></script>
+<script defer src="./static/modules/steps-router.js" type="application/javascript"></script>
+<script defer src="./static/modules/location.js" type="application/javascript"></script>
+</body>
+</html>

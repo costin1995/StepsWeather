@@ -1,0 +1,235 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background: /*linear-gradient(to bottom, #2b3482 0%,#436cad 100%); linear-gradient(to bottom, #1c277f 0%,#2a5daa 100%);*/ linear-gradient(to bottom, #2a89d6 0%,#4be6f4 100%);
+  font-family: Arial, sans-serif;
+}
+
+.night-background{
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to bottom, #374156 0%,#3F4C70 100%);
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  width: 100%;
+  height: 56px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  background: #333;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.header__menu-toggle {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  color: #FFF;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  
+  z-index: 2;
+}
+
+.navbar.-visible {
+  pointer-events: initial;
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.7);
+  opacity: 0;
+
+  transition: opacity .3s cubic-bezier(0,0,.3,1);
+}
+
+.navbar.-visible::before {
+  opacity: 1;
+}
+
+.navbar__header {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #2a89d6/*#2B3482*/;
+  padding: 16px;
+}
+
+.navbar__content {
+  padding: 16px;
+}
+
+.navbar__title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.navbar__header button {
+  cursor: pointer;
+  background: none;
+  color: #fff;
+  border: none;
+}
+
+.navbar__container {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  background-color: #fff;
+  height: 100%;
+  box-shadow: 0 7px 12px rgba(0,0,0,.3);
+  transform: translateX(-102%);
+  transition: transform .3s cubic-bezier(0,0,.3,1);
+}
+
+.navbar.-visible .navbar__container {
+  transform: translateX(0);
+}
+
+main{
+	position: relative;
+}
+
+
+steps-view{
+	position: absolute;
+	top: 0;
+	left: 0;
+	display:block;
+	opacity:0;
+	pointer-events: none;
+	transition: all .2s cubic-bezier(0,0,.3,1);
+	z-index: 1;
+	min-height: 100vh;
+}
+
+steps-view.visible{
+	position: initial;
+	opacity: 1;
+	pointer-events:initial;
+}
+
+.wrapper{
+	/*width: 960px;*/
+	max-width: 100%;
+	/*padding: 0 20px;*/
+}
+
+.wrapper.pending::before{
+
+	content: '';
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .7);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+.wrapper.pending::after{
+	content: '';
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	top: calc(50% - 40px);
+	left: calc(50% - 40px);
+	z-index: 3;
+	background: transparent url('./img/spinner.png') no-repeat center center;
+	animation-name: rotate;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+.weather-icon{
+	font-size: 70px !important;
+	text-shadow: 1.5px 1.5px rgba(0,0,0,0.5);	
+}
+
+.weather-description{
+	text-align: center;
+	padding-top: 20px;
+}
+
+.weather-city{
+	margin-top: 0px;
+	color: #FAFAFA;
+	text-shadow: 1.5px 1.5px rgba(0,0,0,0.5);	
+}
+
+.weather-title{
+	color: #FAFAFA;
+	text-shadow: 1.5px 1.5px rgba(0,0,0,0.5);	
+}
+
+.temp-list{
+	list-style: none;
+	width: 100%;
+	color: #FAFAFA;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	padding-top: 25px;
+	padding-left: 0px;
+	box-shadow: 4px 2px 16px 0px rgba(0,0,0,0.5);
+	background:  linear-gradient(135deg, #374156 0%,#374156 21%,#3F4C70 50%,#3F4C70 55%,#374156 80%,#374156 100%); ; 
+}
+
+.temp-list li{
+	display: inline-block;
+	width: 25%;
+	height: 80px;
+	text-shadow: 1.5px 1.5px rgba(0,0,0,0.5);	
+}
+
+#current-temp{
+	
+	font-size: 30px;
+	padding-top: 1%;
+	vertical-align: middle;
+	text-shadow: 1.5px 1.5px rgba(0,0,0,0.5);	
+}
+
+
+.info{
+	width: 50%;
+	float: left;
+	text-align: center;
+	color: #FAFAFA;
+	text-shadow: 1.5px 1.5px rgba(0,0,0,0.5);	
+}
+
+@keyframes rotate{
+	from{
+		transform: rotate(0deg);
+	}
+	to{
+		transform: rotate(360deg);
+	}
+}
