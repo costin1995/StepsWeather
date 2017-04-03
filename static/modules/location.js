@@ -6,16 +6,21 @@ class Location {
   /**
    * Class constructor
    */
-  constructor() {
+  constructor(city = '') {
 
-    this.city = '';
+    this.city = city;
 	this.baseWeatherUrl = 'http://api.openweathermap.org/data/2.5/';
 	this.weatherApiKey = 'fd15a5b66f337358eabe71273a37748a';
     this.ready = this.ready.bind(this);
     this.loadPosition = this.loadPosition.bind(this);
+    this.loadWeatherDataClickEvent = this.loadWeatherDataClickEvent.bind(this);
+		// Added sidebar as a property so we can hide it when clicking the links
+		this.sidebar = document.querySelector('steps-sidebar');
 	this.spinnerTimeout = setTimeout(this.showSpinner, 200);
 
-    if ( navigator.geolocation ) {
+
+		this._initLinks();
+    if ( !city && navigator.geolocation ) {
       navigator.geolocation.getCurrentPosition(this.loadPosition);
     }
   }
@@ -28,6 +33,37 @@ class Location {
 	document.querySelector('steps-view.visible .wrapper').classList.remove('pending');
   }
 
+	/**
+	 * Add a new event for links that have a js-weather attribute
+	 *
+	 * @private
+   */
+	_initLinks() {
+		let links = document.querySelectorAll('a[js-weather]');
+
+		for(let i=0;i<links.length;i++){
+			links[i].addEventListener('click', this.loadWeatherDataClickEvent);
+		}
+	}
+
+	/**
+	 * When clicking on links that will show the weather, just set the current city and ask for the weather
+	 * by calling ready()
+	 * 
+	 * @param evt
+	 * @returns {*}
+   */
+	loadWeatherDataClickEvent(evt) {
+		evt.stopPropagation();
+		evt.preventDefault();
+
+		let url_params = evt.target.getAttribute('href').split('/');
+		let city = url_params[url_params.length - 1];
+		this.city = city;
+		this.sidebar.hideSidenav();
+		return this.ready();
+	}
+
   async ready () {
 	  
     let weather = await this.getWeather(this.city);
@@ -35,7 +71,8 @@ class Location {
 	//add info
 	
 	//card.innerHTML = input.value;
-	var container = document.querySelector('.wrapper');
+	var container = document.querySelector('steps-view.visible .wrapper');
+		container.innerHTML = '';
 	
 	var city = document.createElement('h1');
 	city.className = 'weather-city';
@@ -164,7 +201,6 @@ class Location {
 
 	clearTimeout(this.spinnerTimeout);
 	this.hideSpinner();
-	console.log(weather);
   }
 
   /**
@@ -197,7 +233,6 @@ class Location {
     let google_response = await axios.get(googleUrl);
 	var url = document.location.toString();
 	var city = url.substring(22, url.length);
-	console.log(city);
 	if(city != ""){
 	    this.city = city;
 	}

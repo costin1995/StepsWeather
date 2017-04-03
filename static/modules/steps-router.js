@@ -50,19 +50,16 @@ class StepsRouter{
 		
 		this.sidenavShowBtn.addEventListener('click', this._showSidebar);
 		this.sidenavHideBtn.addEventListener('click', this._hideSidebar);
-		console.log(this);
 	}
 	
 	_changeRoute(evt){
 		evt.stopPropagation();
 		evt.preventDefault();
-		
 		const url = evt.target.getAttribute('href');
 		window.history.pushState(null,null,url);
 		document.querySelector('.navbar').classList.remove('-visible');
 		
 		let existingView = document.querySelector(`steps-view[route="${url}"]`);
-		
 		if(!existingView){
 			return this._loadAjaxView(url)
 			.then(data=>{
@@ -84,7 +81,7 @@ class StepsRouter{
 			this.currentView.out();
 			view.in();
 			this.currentView=view;
-			location.reload();
+			//location.reload();
 
 
 	}

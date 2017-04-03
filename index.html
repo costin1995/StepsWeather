@@ -28,16 +28,18 @@
                 <ul>
                 <li><a href="/" js-route>Home</a></li>
                     <li><a href="/about" >About</a></li>
-                    <li> <a href="/Cluj-Napoca" >Cluj</a></li>
-                    <li> <a href ="/Sibiu" >Sibiu</a></li>
-                    <li> <a href ="/Suceava" >Suceava</a></li>
-                    <li> <a href ="/Bucuresti" >Bucuresti</a></li>
-                    <li> <a href ="/Iasi" >Iasi</a></li>
-                    <li> <a href ="/Timisoara" >Timisoara</a></li>
-                    <li> <a href ="/Brasov" >Brasov</a></li>
-                    <li> <a href ="/Medias" >Medias</a></li>
-                    <li> <a href ="/Craiova" >Craiova</a></li>
-                    <li> <a href ="/Constanta" >Constanta</a></li>
+                    <!-- Added new attribute `js-weather` handled in location.js. It is used so you can
+                    make a difference between the links you want to load a view and the ones you just want to ask for the weather -->
+                    <li> <a href="/Cluj-Napoca" js-weather>Cluj</a></li>
+                    <li> <a href ="/Sibiu" js-weather>Sibiu</a></li>
+                    <li> <a href ="/Suceava" js-weather>Suceava</a></li>
+                    <li> <a href ="/Bucuresti" js-weather>Bucuresti</a></li>
+                    <li> <a href ="/Iasi" js-weather>Iasi</a></li>
+                    <li> <a href ="/Timisoara" js-weather>Timisoara</a></li>
+                    <li> <a href ="/Brasov" js-weather>Brasov</a></li>
+                    <li> <a href ="/Medias" js-weather>Medias</a></li>
+                    <li> <a href ="/Craiova" js-weather>Craiova</a></li>
+                    <li> <a href ="/Constanta" js-weather>Constanta</a></li>
                 </ul>
             </div>
         </div>
@@ -58,5 +60,6 @@
 <script defer src="./static/modules/steps-sidebar.js" type="application/javascript"></script>
 <script defer src="./static/modules/steps-router.js" type="application/javascript"></script>
 <script defer src="./static/modules/location.js" type="application/javascript"></script>
+
 </body>
 </html>
