@@ -12,18 +12,13 @@ app.get('/*', function (req, res) {
   let path = '/';
   let reqPath = trim(req.path, '/');
 
-  if ( reqPath )
+  if ( reqPath && cities.indexOf(reqPath) === -1 )
 	{
-		var existing = cities.indexOf(reqPath);
-		if(existing == -1)
-		{
-			path += 'sections/' + reqPath + '/index.html';
-		}
+    path += 'sections/' + reqPath + '/index.html';
 	}
 	else 
 	{
 		path += 'index.html';
-		
 	}
   
 
@@ -33,12 +28,6 @@ app.get('/*', function (req, res) {
    res.sendFile(__dirname + path);
    }, 1000);*/
 
-});
-
-app.get('/city/:cityName', function (req, res) {
-  path = 'sections/cities/index.html';
-  
-  res.sendFile(__dirname + path);
 });
 
 app.listen(3000, function () {
